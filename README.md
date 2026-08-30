@@ -11,6 +11,30 @@ A founder-level Business Intelligence Assistant built with **Streamlit**, **Goog
 - **Cross-Board Intelligence**: Seamlessly correlates sales pipeline metrics with actual operational delivery and receivables by normalizing client code variations across boards.
 - **Real-World Data Resilience**: Automatically handles broken Excel formulas (`#VALUE!`), unit labels in numeric fields (e.g., `5360 HA`, `7 mines`), leaked header rows, and missing values without crashing.
 - **Modern High-Contrast Dark UI**: Built with Streamlit featuring a customized dark theme, live board status indicators, responsive starting prompt cards, and readable Markdown formatting.
+- **Production Cloud Deployment**: Fully configured and deployed on **Streamlit Community Cloud** with secret management and automatic rebuilds.
+
+---
+
+## ☁️ Deployment on Streamlit Community Cloud
+
+The application is deployed live on **Streamlit Community Cloud**.
+
+### Deploying Your Own Instance on Streamlit Cloud
+
+1. **Push your code to GitHub**: Ensure all project files (`app.py`, `agent.py`, `monday_client.py`, `data_cleaning.py`, `requirements.txt`, `.streamlit/config.toml`) are pushed to a repository.
+2. **Connect to Streamlit Cloud**:
+   - Log in to [share.streamlit.io](https://share.streamlit.io/).
+   - Click **New app**, select your repository, branch (`main`), and set the main file path to `app.py`.
+3. **Configure Environment Secrets**:
+   - In your app dashboard on Streamlit Cloud, go to **Settings** -> **Secrets**.
+   - Add your API keys and Board IDs in TOML format:
+     ```toml
+     MONDAY_API_TOKEN = "your_monday_api_token_here"
+     GEMINI_API_KEY = "your_gemini_api_key_here"
+     WORK_ORDERS_BOARD_ID = "5030975082"
+     DEALS_BOARD_ID = "5030975111"
+     ```
+   - Click **Save**. Streamlit Cloud will automatically inject these secrets into environment variables for live API connectivity.
 
 ---
 
@@ -73,7 +97,7 @@ To connect the BI Agent to your Monday.com workspace, you need an **API v2 Token
 2. Click your **profile picture** in the bottom-left corner and select **Administration** (or **Developers**).
 3. Navigate to the **API** section under **Developers**.
 4. Click **Generate** (or copy your existing **Personal API Token**).
-5. Copy this token—you will set it as `MONDAY_API_TOKEN` in your `.env` file.
+5. Copy this token—you will set it as `MONDAY_API_TOKEN` in your `.env` file (or Streamlit Cloud Secrets).
 
 > [!NOTE]
 > All queries executed by `monday_client.py` are strictly **read-only** (`query { boards { items_page ... } }`). The application never modifies, creates, or deletes any Monday.com data.
@@ -93,7 +117,7 @@ To connect the BI Agent to your Monday.com workspace, you need an **API v2 Token
 
 ---
 
-## 🚀 Environment Setup & Installation
+## 🚀 Environment Setup & Local Installation
 
 ### Prerequisites
 
@@ -151,7 +175,7 @@ python monday_client.py
 **Expected Output**:
 Prints total item counts and a sample row from both the Work Orders and Deals boards.
 
-### 2. Launch the Streamlit Web Application
+### 2. Launch the Streamlit Web Application Locally
 
 Start the interactive Business Intelligence Agent UI:
 ```bash
@@ -176,8 +200,8 @@ Real-world operational data contains quirks and irregularities. The agent handle
 
 | Issue | Cause | Solution |
 | :--- | :--- | :--- |
-| **"Not connected" badge in sidebar** | Missing or invalid `MONDAY_API_TOKEN` / Board IDs. | Check `.env` file for typos and verify token permissions in Monday.com. |
-| **Gemini API Error** | Missing `GEMINI_API_KEY` or quota exceeded. | Get a free API key at [Google AI Studio](https://aistudio.google.com/) and verify it in `.env`. |
+| **"Not connected" badge in sidebar** | Missing or invalid `MONDAY_API_TOKEN` / Board IDs. | Check `.env` file (or Streamlit Cloud Secrets) for typos and verify token permissions in Monday.com. |
+| **Gemini API Error** | Missing `GEMINI_API_KEY` or quota exceeded. | Get a free API key at [Google AI Studio](https://aistudio.google.com/) and verify it in `.env` / Streamlit Secrets. |
 | **Empty tool results** | Incorrect `WORK_ORDERS_BOARD_ID` or `DEALS_BOARD_ID`. | Check the board URL in Monday.com to confirm the numeric board ID. |
 
 ---
