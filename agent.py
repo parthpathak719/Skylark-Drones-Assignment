@@ -20,7 +20,7 @@ from data_cleaning import (
     summarize_amounts,
 )
 
-MODEL = "gemini-3.6-flash"
+MODEL = "gemini-3.5-flash-lite"
 
 SYSTEM_PROMPT = """You are a business intelligence assistant that answers questions
 about a company's Work Orders (project execution data) and Deals (sales pipeline
