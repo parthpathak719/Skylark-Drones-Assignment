@@ -46,32 +46,49 @@ st.markdown(
         display: none !important;
     }
 
-    /* Ensure Sidebar Expand & Collapse Control Arrow is always visible & styled */
+    /* SIDEBAR EXPAND BUTTON FIX (FOR LOCALHOST AND STREAMLIT CLOUD) */
     [data-testid="stSidebarCollapsedControl"],
-    [data-testid="stSidebarCollapseButton"] {
+    [data-testid="collapsedControl"],
+    button[aria-label="Expand sidebar"],
+    button[aria-label="Open sidebar"],
+    button[title="Expand sidebar"],
+    button[title="Open sidebar"] {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
-        color: #F1F5F9 !important;
-        background: #141722 !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 8px !important;
-        margin-top: 8px !important;
-        margin-left: 8px !important;
+        position: fixed !important;
+        top: 14px !important;
+        left: 14px !important;
         z-index: 999999 !important;
+        background: #141722 !important;
+        border: 1px solid rgba(255, 255, 255, 0.18) !important;
+        border-radius: 8px !important;
+        width: 38px !important;
+        height: 38px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
     }
 
     [data-testid="stSidebarCollapsedControl"] button,
-    [data-testid="stSidebarCollapseButton"] button {
-        color: #F1F5F9 !important;
+    [data-testid="collapsedControl"] button,
+    button[aria-label="Expand sidebar"],
+    button[aria-label="Open sidebar"] {
         background: transparent !important;
         border: none !important;
+        color: #F1F5F9 !important;
+        width: 100% !important;
+        height: 100% !important;
     }
 
     [data-testid="stSidebarCollapsedControl"] svg,
-    [data-testid="stSidebarCollapseButton"] svg {
+    [data-testid="collapsedControl"] svg,
+    button[aria-label="Expand sidebar"] svg,
+    button[aria-label="Open sidebar"] svg {
         fill: #F1F5F9 !important;
         color: #F1F5F9 !important;
+        width: 20px !important;
+        height: 20px !important;
     }
 
     /* 2. SIDEBAR DARK SHADE */
@@ -296,7 +313,7 @@ st.markdown(
         line-height: 1.4;
     }
 
-    /* 8. CHAT INPUT BAR STYLING */
+    /* 8. CHAT INPUT BAR & SUBMIT BUTTON FIX FOR STREAMLIT CLOUD */
     [data-testid="stChatInput"] {
         background-color: #161924 !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -317,8 +334,38 @@ st.markdown(
         border-color: #0073EA !important;
         box-shadow: 0 0 0 2px rgba(0, 115, 234, 0.25) !important;
     }
-    [data-testid="stChatInput"] button {
+
+    /* Scope submit button inside chat input strictly */
+    [data-testid="stChatInput"] button,
+    [data-testid="stChatInputSubmitButton"],
+    button[data-testid="stChatInputSubmitButton"] {
+        width: 34px !important;
+        height: 34px !important;
+        min-height: 34px !important;
+        max-height: 34px !important;
+        min-width: 34px !important;
+        max-width: 34px !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 8px !important;
         color: #0073EA !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+    }
+    [data-testid="stChatInput"] button:hover,
+    [data-testid="stChatInputSubmitButton"]:hover {
+        background: rgba(0, 115, 234, 0.15) !important;
+        color: #38BDF8 !important;
+    }
+    [data-testid="stChatInput"] button svg,
+    [data-testid="stChatInputSubmitButton"] svg {
+        fill: #0073EA !important;
+        color: #0073EA !important;
+        width: 18px !important;
+        height: 18px !important;
     }
 
     /* 9. CHAT MESSAGES & HIGH CONTRAST TEXT FIX */
