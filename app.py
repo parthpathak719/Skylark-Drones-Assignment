@@ -40,14 +40,14 @@ st.markdown(
         color: #F1F5F9 !important;
     }
 
-    /* Hide Deploy button and toolbar clutter */
-    [data-testid="stToolbar"],
+    /* Hide Deploy button only, not the whole toolbar (the sidebar toggle now lives inside it) */
     [data-testid="stAppDeployButton"] {
         display: none !important;
     }
 
     /* SIDEBAR EXPAND BUTTON FIX (FOR LOCALHOST AND STREAMLIT CLOUD) */
     [data-testid="stSidebarCollapsedControl"],
+    [data-testid="stSidebarCollapseButton"],
     [data-testid="collapsedControl"],
     button[aria-label="Expand sidebar"],
     button[aria-label="Open sidebar"],
