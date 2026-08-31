@@ -21,7 +21,7 @@ The application is deployed live on **Streamlit Community Cloud**.
 
 ### Deploying Your Own Instance on Streamlit Cloud
 
-1. **Push your code to GitHub**: Ensure all project files (`app.py`, `agent.py`, `monday_client.py`, `data_cleaning.py`, `requirements.txt`, `.streamlit/config.toml`) are pushed to a repository.
+1. **Push your code to GitHub**: Ensure all project files (`app.py`, `agent.py`, `monday_client.py`, `data_cleaning.py`, `requirements.txt`, `.streamlit/config.toml`) are pushed to your repository.
 2. **Connect to Streamlit Cloud**:
    - Log in to [share.streamlit.io](https://share.streamlit.io/).
    - Click **New app**, select your repository, branch (`main`), and set the main file path to `app.py`.
@@ -193,6 +193,12 @@ Real-world operational data contains quirks and irregularities. The agent handle
 - **Numbers with Unit Labels**: Fields like `Quantities as per PO` mix plain numbers with units (`5360 HA`, `7 mines`). `data_cleaning.safe_float` extracts the numeric portion while preserving units.
 - **Leaked Header Rows**: Rows where header names (e.g. `Close Date (A)`) were mistakenly pasted as data values are detected via `data_cleaning.find_leaked_header_rows` and excluded from calculations.
 - **Normalized Client Codes**: Work Orders and Deals format client names differently. `data_cleaning.normalize_client_code` strips punctuation, standardizes casing, and maps client variants to enable seamless cross-board correlation.
+
+---
+
+## 📝 Documentation & Decision Log
+
+Comprehensive analysis, design assumptions, architectural decisions, and trade-offs (such as selecting Gemini AI over Claude for standing daily quota limits and automatic function calling SDK loops) are documented in **`Decision_Log.docx`**.
 
 ---
 
