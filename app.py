@@ -34,9 +34,44 @@ st.markdown(
         font-family: 'Inter', sans-serif !important;
     }
 
-    /* Hide Deploy Button and Streamlit Top Header Clutter */
+    /* Header background transparent */
     [data-testid="stHeader"] {
+        background: transparent !important;
+        color: #F1F5F9 !important;
+    }
+
+    /* Hide Deploy button and toolbar clutter */
+    [data-testid="stToolbar"],
+    [data-testid="stAppDeployButton"] {
         display: none !important;
+    }
+
+    /* Ensure Sidebar Expand & Collapse Control Arrow is always visible & styled */
+    [data-testid="stSidebarCollapsedControl"],
+    [data-testid="stSidebarCollapseButton"] {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #F1F5F9 !important;
+        background: #141722 !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 8px !important;
+        margin-top: 8px !important;
+        margin-left: 8px !important;
+        z-index: 999999 !important;
+    }
+
+    [data-testid="stSidebarCollapsedControl"] button,
+    [data-testid="stSidebarCollapseButton"] button {
+        color: #F1F5F9 !important;
+        background: transparent !important;
+        border: none !important;
+    }
+
+    [data-testid="stSidebarCollapsedControl"] svg,
+    [data-testid="stSidebarCollapseButton"] svg {
+        fill: #F1F5F9 !important;
+        color: #F1F5F9 !important;
     }
 
     /* 2. SIDEBAR DARK SHADE */
